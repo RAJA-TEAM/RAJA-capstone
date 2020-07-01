@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { Jumbotron, Button } from 'reactstrap';
 
 
-
 class Header extends React.Component {
     render () {
         const {
@@ -13,10 +12,11 @@ class Header extends React.Component {
 
         return (
             <>
-                <Jumbotron>
-                    <h1 className="display-3">Connecting Communities Through Food</h1>
-                    <Button color="info" href={sign_out_route}>Sign Out</Button>
-                    <Button color="info" href={sign_in_route}>Sign In</Button>
+                <Jumbotron className="bg_image_container">
+                    <h1 className="display-3">Connecting Communities</h1>
+                    <h1 className="display-3">Through Food</h1>
+                    <Button className="btn1" href="#">Give Food</Button>
+                    <Button className="btn2" href='#'>Need Food</Button>
                 </Jumbotron>
         </>
         );

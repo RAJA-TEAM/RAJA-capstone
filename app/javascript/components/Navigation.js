@@ -11,18 +11,21 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText
+  NavbarText,
+  Button
 } from 'reactstrap';
+import logo from '../images/Gmas_kitchen_logo_dark_300.png'
 
 const Navigation = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
+
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <NavbarBrand href="/"><img className='logo' src={logo}/></NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
@@ -49,6 +52,12 @@ const Navigation = (props) => {
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
+            <NavItem>
+            <NavLink><Button className="btn1" href='http://localhost:3000/users/sign_out'>Sign Out</Button></NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink><Button className="btn2" href='http://localhost:3000/users/sign_in'>Sign In</Button></NavLink>
+            </NavItem>
           </Nav>
           <NavbarText>Simple Text</NavbarText>
         </Collapse>
@@ -56,5 +65,6 @@ const Navigation = (props) => {
     </div>
   );
 }
+
 
 export default Navigation;
