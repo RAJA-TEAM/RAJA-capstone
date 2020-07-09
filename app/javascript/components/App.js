@@ -26,6 +26,7 @@ class App extends React.Component {
       {/* <Header /> */}
       <Navigation loggedIn={logged_in} />
       
+      
       <Switch>
         <Route path="/" exact component={logged_in ? HeaderUser : Header } />
         {/* <Route path="/" exact component={logged_in ? HeaderUser : AboutUs } /> */}

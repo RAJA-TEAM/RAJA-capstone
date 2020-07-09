@@ -86,6 +86,7 @@ class NeedFood extends React.Component {
         console.log(currentFoods);
         currentFoods[thisFoodIndex] = data;
         console.log(currentFoods);
+        // this.setState({currentFood: data.id});
         this.setState({foods: currentFoods});
         // setFoods(data)
       })
@@ -152,7 +153,7 @@ class NeedFood extends React.Component {
        
       </Map>
       </Jumbotron>
-      <FoodList reserveFood={this.reserveFood.bind(this)} reserve={this.state.reserve} reserved={this.state.reserved} foods={this.state.foods.filter((food) => food.id == this.state.currentFood)} />
+      <FoodList reserveFood={this.reserveFood.bind(this)} reserve={this.state.reserve} reserved={this.state.reserved} numAvailFoods={this.state.foods.filter((food) => !food.reservation).length} foods={this.state.foods.filter((food) => food.id == this.state.currentFood)} />
       </>
     
     )

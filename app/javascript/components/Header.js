@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Jumbotron, Button } from 'reactstrap';
 import AboutUs from './AboutUs';
 
+
 import bgimage from '../images/Gmas_kitchen_bg_image_300.png';
 
 

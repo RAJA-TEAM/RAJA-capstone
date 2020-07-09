@@ -10,11 +10,7 @@ class ActiveListing extends Component {
     super(props)
     this.state = {
       foods: []
-      // center: [32.639954, -117.106705],
-      // zoom: 13,
-      // currentFood: null,
-      // reserve:'reserve',
-      // reserved: 'reserved'
+      
     }
   }
   // updateFood(food){
@@ -111,8 +107,9 @@ class ActiveListing extends Component {
 
   render() {
     let content = (<p>No Active Food</p>)
-    if (this.state.foods.length > 0){
-      content = this.state.foods.filter((food) => !food.reservation).map((food) =>{
+    let nonReservedFoods = this.state.foods.filter((food) => !food.reservation);
+    if (nonReservedFoods.length > 0){
+      content = nonReservedFoods.map((food) =>{
         return <div className="float-left card-width">
           <Card className="middlecard-margin">
             <CardImg top width="100%" src="https://reactstrap.github.io/assets/318x180.svg" alt="Card image cap" />

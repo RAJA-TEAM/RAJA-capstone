@@ -5,23 +5,30 @@ import {
 } from 'reactstrap';
 
 
-class FoodList extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      foods:this.props.foods
 
-    }
+class FoodList extends Component {
+  // constructor(props){
+  //   super(props)
+  //   this.state = {
+  //     foods:this.props.foods
+
+  //   }
 
     
-  }
+  // }
   
 
   render() {
-    let content = (<div>No Food Available Now! Come Back Later!</div>) 
-    if(this.props.foods.length > 0) {
-      let availableFoods = this.props.foods
-      content = availableFoods.filter((food) => !food.reservation).map((food, idx) => {
+    let content = (<div></div>) 
+    if (this.props.numAvailFoods == 0){
+      content = (<div>No Food Available Now! Come Back Later!</div>) 
+    }
+    let nonReservedFoods = this.props.foods.filter((food) => !food.reservation);
+    if(nonReservedFoods.length > 0) {
+      console.log('hey in if');
+      content = nonReservedFoods.map((food, idx) => {
+        console.log('hey in map')
+        console.log(food)
         // return <div> key={idx} {food.name} {food.ingredients} {food.note} {food.box_number} {food.time}</div>
         return <div class="float-left card-width">
         <Card className="middlecard-margin">

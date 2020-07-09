@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from 'react-router-dom';
 import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
-import List from "./List"
 import FoodMap from "./FoodMap"
 
 const NewFood = () => {
@@ -51,7 +50,6 @@ const NewFood = () => {
    
     // // send all foods in the state to the backend to post to the database
     pushFoods(form)
-    setSuccess(true)
   };
   const pushFoods = (freshFood) => {
     // fetch URL to post new state of `foods` to database
@@ -67,7 +65,7 @@ const NewFood = () => {
     .then(data => {
       form.latitude = data.latitude;
       form.longitude = data.longitude;
-      setFoods((foods) => [...foods, form]);
+      setFoods((foods) => [...foods, form], setSuccess(true));
     });
     // add error catching
     // add success function
