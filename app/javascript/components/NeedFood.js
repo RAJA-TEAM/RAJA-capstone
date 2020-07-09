@@ -13,30 +13,30 @@ class NeedFood extends React.Component {
   greenIcon = L.icon({
     iconUrl: greenmapicon,
     shadowUrl: iconshadow,
-    iconSize:     [44, 65], 
-    shadowSize:   [86, 20], 
+    iconSize:     [44, 65],
+    shadowSize:   [86, 20],
     iconAnchor:   [22, 94],
-    shadowAnchor: [18, 50],  
+    shadowAnchor: [18, 50],
     popupAnchor:  [-3, -76]
 
   })
   redIcon = L.icon({
     iconUrl: pinkmapicon,
     shadowUrl: iconshadow,
-    iconSize:     [44, 65], 
-    shadowSize:   [86, 20], 
+    iconSize:     [44, 65],
+    shadowSize:   [86, 20],
     iconAnchor:   [22, 94],
-    shadowAnchor: [18, 50],  
+    shadowAnchor: [18, 50],
     popupAnchor:  [-3, -76]
 
   })
   orangeIcon = L.icon({
     iconUrl: blackmapicon,
     shadowUrl: iconshadow,
-    iconSize:     [44, 65], 
-    shadowSize:   [86, 20], 
+    iconSize:     [44, 65],
+    shadowSize:   [86, 20],
     iconAnchor:   [22, 94],
-    shadowAnchor: [18, 50],  
+    shadowAnchor: [18, 50],
     popupAnchor:  [-3, -76]
 
   })
@@ -63,7 +63,7 @@ class NeedFood extends React.Component {
   }
 
   reserveFood(food){
-  
+
     // call backend (maybe use put ), update food.reservation to be true
 
     food.reservation = !food.reservation
@@ -86,7 +86,7 @@ class NeedFood extends React.Component {
         this.setState({foods: currentFoods});
         // setFoods(data)
       })
-    } 
+    }
     catch(err){
       console.log(err);
     }
@@ -97,7 +97,7 @@ class NeedFood extends React.Component {
   }
 
 
-  
+
   componentDidMount(){
     try {
       fetch("http://localhost:3000/foods")
@@ -106,12 +106,12 @@ class NeedFood extends React.Component {
         console.log("data", data);
         this.setState({foods: data})
       })
-    } 
+    }
     catch(err){
       console.log(err);
     }
   }
-  
+
 
 
   render(){
@@ -125,16 +125,16 @@ class NeedFood extends React.Component {
     // const positionGreenIcon = [this.state.greenIcon.lat, this.state.greenIcon.lng]
     // const positionRedIcon = [this.state.redIcon.lat, this.state.redIcon.lng]
 
-    let content 
+    let content
     if(this.state.foods.length > 0) {
       content = this.state.foods.filter((food) => !food.reservation).map((food, idx) => {
         return <BoxMarker clickedBox={this.clickedBox.bind(this)} key={idx} lat={food.latitude} lng={food.longitude} name={food.name} foodId={food.id} UserFoodId={food.user_id} note={food.note} icon={this.allIcons[idx % 3]} />
       })
     } else {
-      
+
       content = <div>Loading foods</div>
     }
-  
+
     return(
       <>
        <HeaderUser />
@@ -145,14 +145,14 @@ class NeedFood extends React.Component {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
        {content}
-      
-       
-       
+
+
+
       </Map>
       </Jumbotron>
       <FoodList reserveFood={this.reserveFood.bind(this)} logged_in={this.props.loggedIn} reserve={this.state.reserve} reserved={this.state.reserved} foods={this.state.foods.filter((food) => food.user_id == this.state.currentUserFood)} />
       </>
-    
+
     )
   }
 }

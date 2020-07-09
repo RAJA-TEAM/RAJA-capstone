@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Map, TileLayer } from 'react-leaflet';
 import BoxMarker from './BoxMarker'
-import leafGreen from './assets/leaf-green.png'
-import leafRed from './assets/leaf-red.png'
-import leafOrange from './assets/leaf-orange.png'
-import leafShadow from './assets/leaf-shadow.png'
+// import leafGreen from './assets/leaf-green.png'
+// import leafRed from './assets/leaf-red.png'
+// import leafOrange from './assets/leaf-orange.png'
+// import leafShadow from './assets/leaf-shadow.png'
 
 
 class List extends React.Component {
@@ -12,30 +12,30 @@ class List extends React.Component {
   greenIcon = L.icon({
     iconUrl: leafGreen,
     shadowUrl: leafShadow,
-    iconSize:     [38, 50], 
-    shadowSize:   [50, 64], 
+    iconSize:     [38, 50],
+    shadowSize:   [50, 64],
     iconAnchor:   [22, 94],
-    shadowAnchor: [4, 62],  
+    shadowAnchor: [4, 62],
     popupAnchor:  [-3, -76]
 
   })
   redIcon = L.icon({
     iconUrl: leafRed,
     shadowUrl: leafShadow,
-    iconSize:     [38, 95], 
-    shadowSize:   [50, 64], 
+    iconSize:     [38, 95],
+    shadowSize:   [50, 64],
     iconAnchor:   [22, 94],
-    shadowAnchor: [4, 62],  
+    shadowAnchor: [4, 62],
     popupAnchor:  [-3, -76]
 
   })
   orangeIcon = L.icon({
     iconUrl: leafOrange,
     shadowUrl: leafShadow,
-    iconSize:     [38, 95], 
-    shadowSize:   [50, 64], 
+    iconSize:     [38, 95],
+    shadowSize:   [50, 64],
     iconAnchor:   [22, 94],
-    shadowAnchor: [4, 62],  
+    shadowAnchor: [4, 62],
     popupAnchor:  [-3, -76]
 
   })
@@ -49,7 +49,7 @@ class List extends React.Component {
       zoom: 13
     }
   }
-  
+
   componentDidMount(){
     try {
       fetch("http://localhost:3000/foods")
@@ -58,7 +58,7 @@ class List extends React.Component {
         console.log("data", data);
         this.setState({foods: data})
       })
-    } 
+    }
     catch(err){
       console.log(err);
     }
@@ -74,10 +74,10 @@ class List extends React.Component {
         return <BoxMarker key={idx} lat={food.latitude} lng={food.longitude} name={food.name} note={food.note} icon={this.allIcons[idx % 3]} />
       })
     } else {
-      
+
       content = <div>Loading foods</div>
     }
-  
+
     return(
       <Map center={this.state.center} zoom={this.state.zoom}>
         <TileLayer
@@ -85,15 +85,13 @@ class List extends React.Component {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
        {content}
-       
-       
+
+
       </Map>
-    
+
     )
   }
 }
-
-
 
 
 export default List;
